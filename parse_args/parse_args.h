@@ -7,7 +7,7 @@
 
 void parse_args(int argc, char* argv[], file_mode* mode, reliability* reliability, char* name[]) {
     char* file_name;
-    strcpy(file_name, argv[1]);
+    memcpy (file_name, argv[1], strlen(argv[1]) + 1);
     if (file_name) {
         (*name) = file_name;
     }
