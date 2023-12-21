@@ -5,19 +5,9 @@
 #include <stdlib.h>
 #include "../file_mode/file_mode.h"
 
-int parse_args(int argc, char* argv[], file_mode* mode, reliability* reliability, char* name[]) {
+int parse_args(int argc, char* argv[], file_mode* mode, reliability* reliability, char* name[], read_write* r_w) {
     if (argc <= 0) {
         printf("No file supplied");
-        return -1;
-    }
-
-    if (argc <= 1) {
-        printf("No file mode supplied");
-        return -1;
-    }
-
-    if (argc <= 2) {
-        printf("No file reliability supplied");
         return -1;
     }
 
@@ -27,9 +17,28 @@ int parse_args(int argc, char* argv[], file_mode* mode, reliability* reliability
         (*name) = file_name;
     }
 
+
+    if (argc <= 1) {
+        printf("No file mode or read/write mode supplied");
+        return -1;
+    }
+
+    char _r_w = argv[2][0];
+    if (_r_w = 'r') {
+        (*r_w) = READ;
+        return 0;
+    } else {
+        (*r_w) = WRITE;
+    }
+
     int _file_mode = argv[2][0] - '0';
     if (_file_mode) {
         (*mode) = (int)_file_mode;
+    }
+
+    if (argc <= 2) {
+        printf("No file reliability supplied");
+        return -1;
     }
 
     int _file_reliability = argv[3][0] - '0';

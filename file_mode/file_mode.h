@@ -11,4 +11,9 @@ typedef enum _reliability {
     RELIABLE
 } reliability;
 
+typedef enum _read_write {
+    READ,
+    WRITE
+} read_write;
+
 #endif
