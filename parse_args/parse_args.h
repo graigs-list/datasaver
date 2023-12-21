@@ -24,7 +24,7 @@ int parse_args(int argc, char* argv[], file_mode* mode, reliability* reliability
     }
 
     char _r_w = argv[2][0];
-    if (_r_w = 'r') {
+    if (_r_w == 'r') {
         (*r_w) = READ;
         return 0;
     } else {
